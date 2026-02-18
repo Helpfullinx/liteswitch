@@ -1,9 +1,18 @@
 version: "3.9"
 
 services:
-  builder:
-    image: devkitpro/devkita64
+  build:
+    image: devkit/tesla
+    build:
+      context: .
+      dockerfile: Dockerfile
     working_dir: /build
     volumes:
       - .:/build
     command: make all
+  clean:
+    image: devkit/tesla
+    working_dir: /build
+    volumes:
+      - .:/build
+    command: make clean
