@@ -1,8 +1,10 @@
-TARGETS := sysmodule
+TARGETS := sysmodule overlay
 
 .PHONY: all clean $(TARGETS)
 
-# Build each target
+overlay:
+	$(MAKE) -C $@
+
 sysmodule:
 	$(MAKE) -C $@
 
@@ -12,7 +14,6 @@ all: $(TARGETS)
 	cp ./sysmodule/toolbox.json ./out/atmosphere/contents/0100000000000FED/
 	touch ./out/atmosphere/contents/0100000000000FED/flags/boot2.flag
 
-# Clean each target
 clean:
 	for dir in $(TARGETS); do \
 		$(MAKE) -C $$dir clean; \
