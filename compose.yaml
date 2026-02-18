@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  builder:
+    image: devkitpro/devkita64
+    working_dir: /build
+    volumes:
+      - .:/build
+    command: make all
